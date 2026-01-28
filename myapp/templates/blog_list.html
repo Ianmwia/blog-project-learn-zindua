@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    Blogs
+{% endblock title %}
+
+
+{% block content %}
+    <h1>Blog List</h1>
+    
+    {% if blogs %}
+        <div class="flex flex-col md:grid md:grid-cols-2 lg:grid-cols-3 gap-2">
+        {% for blog in blogs %}
+            <div class="outline m-2 p-2 shadow-lg rounded-lg">
+            <h2>{{blog.title}}</h2>
+            <img class="rounded-lg" src="{{blog.image.url}}" alt="blog image" width='400' height="400">
+            <p class="text-xl">By: {{ blog.author.first_name | capfirst }} {{blog.author.last_name | capfirst}}</p>
+                <p>Published: 
+                {% if blog.is_published %}
+                    Yes
+                    {% else %}
+                    No                    
+                {% endif %}      
+            </p>
+            <p>Content : {{blog.content | truncatewords:30}}</p>
+           </div>
+        {% endfor %}
+        </div>
+            
+    {% endif %}
+        
+{% endblock content %}
+    
+    

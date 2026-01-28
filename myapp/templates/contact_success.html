@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}Message Sent{% endblock %}
+
+{% block content %}
+<div class="success-container" style="text-align: center; padding: 2rem;">
+    <h2>Success!</h2>
+    <p>Your message has been sent. We appreciate you reaching out.</p>
+    <a href="{% url 'contact_us' %}" class="btn-link bg-green-400 p-1 rounded-lg mt-2 hover:bg-yellow-500">Send another message</a>
+</div>
+{% endblock %}

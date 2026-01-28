@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Filters
+{% endblock title %}
+
+{% block content %}
+    Uppercase: {{message | upper}}<br>
+    Length : {{message | length}}<br>
+    Truncate Characters: {{message | truncatechars:20}} <br>
+    Truncate Words: {{message | truncatewords:20}} <br>
+    Lowercase: {{message | lower}}
+    
+    <p>{{my_date | date:"F j, Y"}}</p>
+{% endblock content %}
+
+
+

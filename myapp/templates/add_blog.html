@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    Add Blog
+{% endblock title %}
+    
+
+{% comment %} {% block content %}
+    <form method="post">
+        
+        {% comment %}
+            add csrf and tokenizes to prevent malice
+            {{}} is a variable
+        {% endcomment %}
+            
+        {% comment %} {% csrf_token %}
+        <label for="{{ form.author.id_for_label }}">Author: </label>
+        {{form.author}}
+        <label for="{{ form.title.id_for_label }}">Title: </label>
+        {{form.title}}
+        <label for="{{ form.content.id_for_label }}">Content: </label>
+        {{form.content}}
+        <label for="{{ form.is_published.id_for_label }}">Publish: </label>
+        {{form.is_published}}
+        <button type="submit">Save</button>
+    </form>
+    
+{% endblock content %} {% endcomment %}
+
+
+{% block content %}
+<form method="post" class="max-w-lg mx-auto mt-8" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="mb-4">
+        <label for="{{ form.author.id_for_label }}" class="block text-gray-700 font-bold mb-2">Author:</label>
+        {{ form.author }}
+    </div>
+    <div class="mb-4">
+        <label for="{{ form.title.id_for_label }}" class="block text-gray-700 font-bold mb-2">Title:</label>
+        {{ form.title }}
+    </div>
+    <div class="mb-4">
+        <label for="{{ form.image.id_for_label }}" class="block text-gray-700 font-bold mb-2">Image:</label>
+        {{ form.image }}
+    </div>
+    <div class="mb-4">
+        <label for="{{ form.content.id_for_label }}" class="block text-gray-700 font-bold mb-2">Content:</label>
+        {{ form.content }}
+    </div>
+    <div class="mb-4">
+        <label for="{{ form.is_published.id_for_label }}" class="block text-gray-700 font-bold mb-2">Publish:</label>
+        {{ form.is_published }}
+    </div>
+    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        Save
+    </button>
+</form>
+{% endblock %}

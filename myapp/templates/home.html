@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    IMAGES IN DJANGO
+{% endblock title %}
+
+{% block content %}
+    <h1>Welcome!</h1>
+    <img class="rounded-xl sm:m-3 lg:mx-auto" src="{% static 'images/python-logo.jpg' %}" alt="python logo" width="400" height="400">
+{% endblock content %}
+
+

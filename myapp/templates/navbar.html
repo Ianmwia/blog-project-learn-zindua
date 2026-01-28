@@ -1,0 +1,24 @@
+<nav class="bg-gray-300 text-xl text-blue-700 mb-2 p-2 hover:cursor-pointer font-bold">
+    <ul class="flex gap-2">
+        <li class="hover:text-yellow-600"><a href="{% url 'home' %}">Home</a></li>
+        <li class="hover:text-yellow-600"><a href="{% url 'add_blog' %}">Add Blog</a></li>
+        <li class="hover:text-yellow-600"><a href="{% url 'blog_list' %}">Blog List</a></li>
+        <li class="hover:text-yellow-600"><a href="{% url 'subscribe' %}">Subscribe</a></li>
+        <li class="hover:text-yellow-600"><a href="{% url 'contact_us' %}">Contact</a></li>
+        {% if user.is_authenticated %}
+                <li>
+                  <form action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="bg-red-400 text-white hover:text-red-700 p-1 rounded-lg">Logout</button>
+                  </form>
+                </li>
+            {% else %}
+                <li><a href="{% url 'login' %}" class="text-white hover:text-gray-300">Login</a></li>
+                <li class="hover:text-yellow-600"><a href="{% url 'django_registration_register' %}">Register</a></li>
+            {% endif %}
+    </ul>
+</nav>
+
+
+
+
