@@ -5,3 +5,5 @@ photoenv/
 __pycache__/
 db.sqlite3
 .vscode/
+static/
+/static/
