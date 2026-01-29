@@ -183,6 +183,7 @@ FIELD_ENCRYPTION_KEY = '5yKdb6EYMNpZwOikXfL09cg_x6qmG-fGZN5896HHEDU='
 # for online we use render online postgres
 DATABASES = {
     'default': dj_database_url.config(
+        'INTERNAL_DATABASE_URL',
         default='sqlite:///db.sqlite3', # fallback for local development
         conn_max_age=600,
         conn_health_checks=True
