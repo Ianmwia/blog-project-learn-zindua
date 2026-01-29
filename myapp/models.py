@@ -23,6 +23,7 @@ class Author(models.Model):
     email = models.EmailField(blank=True, unique=True)
     bio = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
+    age = models.IntegerField(default=18)
     def __str__(self):
         """
         Docstring for __str__
