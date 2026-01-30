@@ -10,6 +10,7 @@ django-cors-headers==4.9.0
 django-encrypted-model-fields==0.6.5
 django-filter==25.2
 django-registration==5.2.1
+django-widget-tweaks==1.5.1
 djangorestframework==3.16.1
 djangorestframework_simplejwt==5.5.1
 drf-yasg==1.21.14
@@ -32,3 +33,4 @@ sqlparse==0.5.5
 tzdata==2025.3
 uritemplate==4.2.0
 urllib3==2.6.3
+whitenoise==6.11.0
