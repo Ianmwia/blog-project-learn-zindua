@@ -23,6 +23,7 @@ class Member(models.Model):
     age = models.IntegerField(default=18)
 
 class Author(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='author_profile', null=True, blank=True)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     email = models.EmailField(blank=True, unique=True)
@@ -112,7 +113,11 @@ profile = models.OneToOneField(Profile, on_delete=models.CASCADE)
 def create_author_profile(sender, instance, created, **kwargs):
     if created:
         # This automatically creates an Author every time a CustomUser is registered
-        Author.objects.create(user=instance)
+        Author.objects.create(
+            user=instance,
+            email=instance.email,
+            first_name=instance.first_name,
+            last_name=instance.last_name)
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def save_author_profile(sender, instance, **kwargs):
