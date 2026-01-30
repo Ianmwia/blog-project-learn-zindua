@@ -9,6 +9,11 @@ from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.base_user import BaseUserManager
 from django.utils.translation import gettext_lazy as _
 
+
+from django.conf import settings
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
 # Create your models here.
 class Member(models.Model):
     firstname = models.CharField(max_length=255)
@@ -101,6 +106,20 @@ class Profile(models.Model):
 
 #one to one relate e.g user to 1 profile
 profile = models.OneToOneField(Profile, on_delete=models.CASCADE)
+
+# register users as authors
+@receiver(post_save, sender=settings.AUTH_USER_MODEL)
+def create_author_profile(sender, instance, created, **kwargs):
+    if created:
+        # This automatically creates an Author every time a CustomUser is registered
+        Author.objects.create(user=instance)
+
+@receiver(post_save, sender=settings.AUTH_USER_MODEL)
+def save_author_profile(sender, instance, **kwargs):
+    # This ensures if the User is updated, the Author is saved too
+    if hasattr(instance, 'author'):
+        instance.author.save()
+
 
 
 class Meta:

@@ -263,7 +263,8 @@ AUTH_USER_MODEL = 'myapp.CustomUser'
 #Authentication backend
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
-    'myapp.backends.CustomEmailBackend'
+    #for custom email auth
+    # 'myapp.backends.CustomEmailBackend'
 ]
 
 # to auto add slashes to say there is more after
