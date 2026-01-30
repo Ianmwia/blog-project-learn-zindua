@@ -181,14 +181,33 @@ FIELD_ENCRYPTION_KEY = '5yKdb6EYMNpZwOikXfL09cg_x6qmG-fGZN5896HHEDU='
 # }
 
 # for online we use render online postgres
-DATABASES = {
-    'default': dj_database_url.config(
-        'INTERNAL_DATABASE_URL',
-        default='sqlite:///db.sqlite3', # fallback for local development
-        conn_max_age=600,
-        conn_health_checks=True
-    )
-}
+# DATABASES = {
+#     'default': dj_database_url.config(
+#         default=config('INTERNAL_DATABASE_URL'), # fallback for local development
+#         conn_max_age=600,
+#         conn_health_checks=True
+#     )
+# }
+# This logic checks if 'INTERNAL_DATABASE_URL' exists (Render). 
+# If not, it falls back to local SQLite so you don't get errors on your laptop.
+
+
+if os.environ.get('INTERNAL_DATABASE_URL'):
+    DATABASES = {
+        'default': dj_database_url.config(
+            default=os.environ.get('INTERNAL_DATABASE_URL'),
+            conn_max_age=600,
+            conn_health_checks=True
+        )
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+
 
 
 # Password validation
